@@ -1,7 +1,7 @@
 {
   "name": "apollo-playground-maker",
   "version": "0.1.0",
-  "description": "",
+  "description": "A graphql-codegen plugin that generates apollo-server playground tab definitions based on gql documents (and optionally supplied query variables).",
   "main": "src/main.js",
   "scripts": {
     "test": "graphql-codegen --config codegen.yml"
