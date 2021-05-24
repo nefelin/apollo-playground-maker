@@ -1,0 +1,18 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type DemoEntity {
+  name: String!
+  age: Float!
+  otherTrait: String
+}
+
+type Query {
+  helloWorld(two: [String!], one: [[DemoInput!]!]): String!
+  ent: DemoEntity!
+}
+
+input DemoInput {
+  someprop: String!
+}

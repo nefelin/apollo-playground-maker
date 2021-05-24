@@ -65,6 +65,10 @@ const insertTab = () => ({name: 'New Tab', ...blankTab()});
 const blankTab = () => ({ query: '', variables: {}, responses: '' });
 
 const flattenLocations = (locations) => {
+  if (locations.length === 1) {
+    return [getDirName(locations[0])]
+  }
+
   const splits = locations.map((location) => location.split('/'));
   let offset = 0;
 
@@ -74,3 +78,8 @@ const flattenLocations = (locations) => {
 
   return splits.map((split) => split[offset]);
 };
+
+const getDirName = (fullPath) => {
+  const dirs = path.dirname(fullPath).split(path.sep);
+  return dirs[dirs.length-1];
+}

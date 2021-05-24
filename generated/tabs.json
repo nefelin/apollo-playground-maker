@@ -12,13 +12,5 @@
   "responses": [
    ""
   ]
- },
- {
-  "name": "other_dir",
-  "query": "query Animal($a: String) {\n    helloWorld\n}\n\nquery Banana {\n    helloWorld\n}\n\nquery Mannequin($a: String) {\n    helloWorld\n}\n\nfragment AFrag on DemoEntity {\n    __typename\n    name\n}\n\nfragment ZFrag on DemoEntity {\n    otherTrait\n}",
-  "variables": "{\n \"a\": \"some asdfasdf\"\n}",
-  "responses": [
-   "This is just some text to give you context when this tab loads up in the gql playground, keep it chill brah.\n\n"
-  ]
  }
 ]

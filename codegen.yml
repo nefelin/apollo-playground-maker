@@ -1,14 +1,30 @@
 overwrite: true
 schema: "test/schema.gql"
+#generates:
+#  generated/tabs.json:
+#    documents: "test/components/**/*.{gql,ts}"
+#    plugins:
+#      ./src/main.js
+#    config:
+#      queryVarsPath: "./test/queryVars.ts"
+#      docSortType: "content"
+##      colorLogs: false
+#      #      insertBlankTab: false
+#      #      fragmentsLast: false
+#      #      docSortOrder: "asc"
+#      missingVarWarning:
+#        report: 'all'
+#        detail: 'high'
+#      responsesFilename: "gqlResponse.txt"
 generates:
   generated/tabs.json:
-    documents: "test/components/**/*.{gql,ts}"
+    documents: "test-single-file/components/**/*.{gql,ts}"
     plugins:
       ./src/main.js
     config:
-      queryVarsPath: "./test/queryVars.ts"
+      queryVarsPath: "./test-single-file/queryVars.ts"
       docSortType: "content"
-#      colorLogs: false
+      #      colorLogs: false
       #      insertBlankTab: false
       #      fragmentsLast: false
       #      docSortOrder: "asc"
