@@ -61,7 +61,7 @@ const tabsFromLocations = (dirNames, insertBlankTab) => {
   return tabs;
 };
 
-const insertTab = () => ({name: 'New Tab', ...blankTab()});
+const insertTab = () => ({name: 'New Tab', query: '', variables: '', responses: '' });
 const blankTab = () => ({ query: '', variables: {}, responses: '' });
 
 const flattenLocations = (locations) => {
