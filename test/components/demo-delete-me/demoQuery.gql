@@ -1,0 +1,3 @@
+query DemoQuery($arg1: [[DemoInput!]!]!, $arg2: [String!]) {
+    helloWorld(one: $arg1, two: $arg2)
+}

@@ -1,0 +1,33 @@
+{
+  "name": "apollo-playground-maker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "graphql-codegen --config codegen.yml"
+  },
+  "keywords": [
+    "apollo",
+    "playground",
+    "plugin"
+  ],
+  "author": "Eric Michael Lindgren",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "graphql": "^15.5.0",
+    "graphql-codegen": "^0.4.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "peerDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "graphql": "^15.5.0",
+    "graphql-codegen": "^0.4.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.2.4"
+  }
+}

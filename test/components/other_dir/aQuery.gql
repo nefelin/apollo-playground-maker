@@ -1,0 +1,12 @@
+query Animal($a: String) {
+    helloWorld
+}
+
+query Mannequin($a: String) {
+    helloWorld
+}
+
+fragment AFrag on DemoEntity {
+    __typename
+    name
+}
