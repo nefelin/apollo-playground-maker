@@ -1,7 +1,5 @@
 ## What Is It?
-apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. Apollo's graphQL playground accepts an array of tabs as part of it's setup in the shape of.
-
-# Add bits here about added endpoint/headers
+apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. ```apollo-server``` allows you to pass an array of tab configurations as part of the playground setup. [site]
 
 This allows one to supply pre-populated tab-content for the playground. This could be used in a number of ways, but I have found myself
 using it as a sort of swagger-like tool to test the graphQL operations the I have implemented inside my app. Note this only makes sense
@@ -48,6 +46,18 @@ the argument.
 #### Response Text
 If passed a ```responsesFilename``` option, APM will look for a responses file whererever ```.gql``` files are encountered, aggregating those per tab.
 
+### Endpoints and Headers
+
+APM provides a sensible default for the endpoint of each tab (```http://localhost:4000/graphql```), but this may not always be appropriate. In circumstances where you need to adjust this (for example dev/qa/stage/prod all have different urls), it may be necessary to map the appropriate endpoint url onto the generated tabs. You might use the same approach for any headers you'd like to provide. For example:
+```
+const apolloPlaygroundTabs = require('generated/tabs.json');
+const endpoint = getEndpointForThisEnv();
+const tabs = apolloPlaygroundTabs.map((tabInfo) => ({
+          ...tabInfo,
+          endpoint,
+          headers: { Authorization: 'basic-auth header' },
+        }));
+```
 
 ### Options and Defaults
 | Option            | Default Value | Description                                                                                                                |
