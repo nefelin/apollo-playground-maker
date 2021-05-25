@@ -1,0 +1,5 @@
+query GovernmentIssuedIdTypes($countryCode: CountryCode!) {
+  referenceLocalization(countryCode: $countryCode) {
+    governmentIssuedIDTypes
+  }
+}

@@ -1,0 +1,5 @@
+mutation DeleteClientNote($deleteClientNoteInput: ClientNoteDeleteInput!) {
+  deleteClientNote(deleteInput: $deleteClientNoteInput) {
+    ...fullClientNote
+  }
+}

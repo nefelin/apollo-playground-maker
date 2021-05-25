@@ -1,0 +1,3 @@
+mutation UpdateClientNote($updateClientNoteInput: ClientNoteUpdateInput!) {
+  updateClientNote(updateInput: $updateClientNoteInput)
+}

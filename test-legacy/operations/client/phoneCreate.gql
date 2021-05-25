@@ -1,0 +1,5 @@
+mutation CreateClientPhone($createClientPhoneInput: ClientPhoneCreateInput!) {
+  createClientPhone(createInput: $createClientPhoneInput) {
+    ...fullClient
+  }
+}

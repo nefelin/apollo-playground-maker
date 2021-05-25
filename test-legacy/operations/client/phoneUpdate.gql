@@ -1,0 +1,5 @@
+mutation UpdateClientPhone($updateClientPhoneInput: ClientPhoneUpdateInput!) {
+  updateClientPhone(updateInput: $updateClientPhoneInput) {
+    ...fullClient
+  }
+}

@@ -1,0 +1,5 @@
+mutation UpdateClient($updateClientInput: ClientUpdateInput!) {
+  updateClient(updateInput: $updateClientInput) {
+    ...fullClient
+  }
+}

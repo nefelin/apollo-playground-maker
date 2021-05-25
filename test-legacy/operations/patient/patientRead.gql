@@ -1,0 +1,8 @@
+query ReadPatient($patientKey: String!, $page: Int, $pageSize: Int) {
+  readPatient(patientKey: $patientKey) {
+    ...fullPatient
+    patientNotes(page: $page, pageSize: $pageSize) {
+      ...fullPaginatedPatientNotes
+    }
+  }
+}

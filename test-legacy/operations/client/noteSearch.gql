@@ -1,0 +1,5 @@
+query SearchClientNotes($searchClientNoteInput: ClientNoteSearchInput!) {
+  searchClientNotes(searchInput: $searchClientNoteInput) {
+    ...fullPaginatedClientNotes
+  }
+}

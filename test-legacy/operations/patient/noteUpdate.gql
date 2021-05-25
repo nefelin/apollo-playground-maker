@@ -1,0 +1,3 @@
+mutation UpdatePatientNote($updatePatientNoteInput: PatientNoteUpdateInput!) {
+  updatePatientNote(updateInput: $updatePatientNoteInput)
+}

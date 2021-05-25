@@ -1,0 +1,5 @@
+mutation DeletePatient($patientKey: String!) {
+  deletePatient(patientKey: $patientKey) {
+    ...fullPatient
+  }
+}

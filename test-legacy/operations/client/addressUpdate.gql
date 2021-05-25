@@ -1,0 +1,7 @@
+mutation UpdateClientAddress(
+  $updateClientAddressInput: ClientAddressUpdateInput!
+) {
+  updateClientAddress(updateInput: $updateClientAddressInput) {
+    ...fullClient
+  }
+}

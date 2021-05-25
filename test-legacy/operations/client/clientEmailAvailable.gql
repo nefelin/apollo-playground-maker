@@ -1,0 +1,3 @@
+query EmailAvailable($emailAvailableInput: ClientEmailAvailableInput!) {
+  emailAvailable(emailAvailableInput: $emailAvailableInput)
+}

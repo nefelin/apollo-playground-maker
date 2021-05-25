@@ -1,0 +1,7 @@
+mutation DeleteClientAddress(
+  $deleteClientAddressInput: ClientAddressDeleteInput!
+) {
+  deleteClientAddress(deleteInput: $deleteClientAddressInput) {
+    ...fullClient
+  }
+}

@@ -1,0 +1,119 @@
+fragment fullClient on Client {
+  id
+  clientKey
+  practiceKey
+  title
+  prefix
+  givenName
+  middleName
+  familyName
+  primaryPhoneKey
+  preferredContactMethod
+  governmentIssuedIDNumber
+  governmentIssuedIDType
+  primaryAddressKey
+  isActive
+  acceptsGenerics
+  dateOfBirth
+  createdDate
+  modifiedDate
+  phoneNumbers {
+    ...fullPhone
+  }
+  addresses {
+    ...fullAddress
+  }
+  email {
+    ...fullClientEmail
+  }
+  marketing {
+    ...fullClientMarketing
+  }
+  patients {
+    ...fullPatient
+  }
+}
+
+fragment fullPhone on ClientPhone {
+  id
+  phoneKey
+  number
+  extension
+  ituNumber
+  hasMessaging
+  isDeleted
+  modifiedDate
+}
+
+fragment fullAddress on ClientAddress {
+  id
+  addressKey
+  line1
+  line2
+  line3
+  city
+  stateOrProvince
+  postalCode
+  country
+  isDeleted
+  isAddressVerified
+  createdDate
+  modifiedDate
+}
+
+fragment fullPaginatedClientNotes on PaginatedClientNotes {
+  notes {
+    ...fullClientNote
+  }
+  currentPage
+  pageSize
+  totalPages
+  totalResults
+}
+
+fragment fullClientNote on ClientNote {
+  id
+  noteKey
+  clientKey
+  userKey
+  userPrefix
+  userGivenName
+  userFamilyName
+  note
+  contextCode
+  isDeleted
+  createdDate
+  modifiedDate
+}
+
+fragment fullClientEmail on ClientEmail {
+  address
+}
+
+fragment fullClientMarketing on ClientMarketing {
+  hasEmailMarketing
+}
+
+fragment fullPatient on Patient {
+  id
+  name
+  patientKey
+  clients {
+    clientKey
+  }
+  practiceKey
+  speciesCode
+  weight
+  weightUnitCode
+  sexCode
+  isAltered
+  dateOfBirth
+  primaryVetKey
+  isActive
+  breedCode
+  knownAllergies
+  otherMedications
+  healthConditions
+  createdDate
+  modifiedDate
+}

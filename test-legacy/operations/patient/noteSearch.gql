@@ -1,0 +1,5 @@
+query SearchPatientNotes($searchPatientNoteInput: PatientNoteSearchInput!) {
+  searchPatientNotes(searchInput: $searchPatientNoteInput) {
+    ...fullPatientNote
+  }
+}

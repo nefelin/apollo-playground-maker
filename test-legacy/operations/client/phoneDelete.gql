@@ -1,0 +1,5 @@
+mutation DeleteClientPhone($deleteClientPhoneInput: ClientPhoneDeleteInput!) {
+  deleteClientPhone(deleteInput: $deleteClientPhoneInput) {
+    ...fullClient
+  }
+}

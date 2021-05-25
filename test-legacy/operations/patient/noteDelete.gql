@@ -1,0 +1,5 @@
+mutation DeletePatientNote($deletePatientNoteInput: PatientNoteDeleteInput!) {
+  deletePatientNote(deleteInput: $deletePatientNoteInput) {
+    ...fullPatientNote
+  }
+}

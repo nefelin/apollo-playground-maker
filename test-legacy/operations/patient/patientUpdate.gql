@@ -1,0 +1,5 @@
+mutation UpdatePatient($updatePatientInput: PatientUpdateInput!) {
+  updatePatient(updateInput: $updatePatientInput) {
+    ...fullPatient
+  }
+}

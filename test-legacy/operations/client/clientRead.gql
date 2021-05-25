@@ -1,0 +1,8 @@
+query ReadClient($clientKey: String!, $page: Int, $pageSize: Int) {
+  readClient(clientKey: $clientKey) {
+    ...fullClient
+    clientNotes(page: $page, pageSize: $pageSize) {
+      ...fullPaginatedClientNotes
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation CreatePatientNote($createPatientNoteInput: PatientNoteCreateInput!) {
+  createPatientNote(createInput: $createPatientNoteInput)
+}

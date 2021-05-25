@@ -17,18 +17,28 @@ schema: "test/schema.gql"
 #        detail: 'high'
 #      responsesFilename: "gqlResponse.txt"
 generates:
-  generated/tabs.json:
-    documents: "test-single-file/components/**/*.{gql,ts}"
+#  generated/tabs.json:
+#    documents: "test-single-file/components/**/*.{gql,ts}"
+#    plugins:
+#      ./src/main.js
+#    config:
+#      queryVarsPath: "./test-single-file/queryVars.ts"
+#      docSortType: "content"
+#      #      colorLogs: false
+#      #      insertBlankTab: false
+#      #      fragmentsLast: false
+#      #      docSortOrder: "asc"
+#      missingVarWarning:
+#        report: 'all'
+#        detail: 'high'
+#      responsesFilename: "gqlResponse.txt"
+  generated/legacy.json:
+    documents: "test-legacy/**/*.{gql,ts}"
     plugins:
       ./src/main.js
     config:
-      queryVarsPath: "./test-single-file/queryVars.ts"
+      queryVarsName: "queryVars.ts"
       docSortType: "content"
-      #      colorLogs: false
-      #      insertBlankTab: false
-      #      fragmentsLast: false
-      #      docSortOrder: "asc"
       missingVarWarning:
         report: 'all'
         detail: 'high'
-      responsesFilename: "gqlResponse.txt"

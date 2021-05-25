@@ -1,0 +1,5 @@
+query ReferenceLocalization($countryCode: CountryCode!) {
+  referenceLocalization(countryCode: $countryCode) {
+    ...localization
+  }
+}

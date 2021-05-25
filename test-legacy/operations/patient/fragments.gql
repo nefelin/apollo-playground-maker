@@ -1,0 +1,48 @@
+fragment fullPatient on Patient {
+  id
+  name
+  patientKey
+  clients {
+    clientKey
+  }
+  practiceKey
+  speciesCode
+  weight
+  weightUnitCode
+  sexCode
+  isAltered
+  dateOfBirth
+  primaryVetKey
+  isActive
+  breedCode
+  knownAllergies
+  otherMedications
+  healthConditions
+  createdDate
+  modifiedDate
+}
+
+fragment fullPaginatedPatientNotes on PaginatedPatientNotes {
+  notes {
+    ...fullPatientNote
+  }
+  currentPage
+  pageSize
+  totalPages
+  totalResults
+}
+
+fragment fullPatientNote on PatientNote {
+  id
+  noteKey
+  patientKey
+  userKey
+  userPrefix
+  userGivenName
+  userFamilyName
+  note
+  contextCode
+  isDeleted
+  createdDate
+  modifiedDate
+}

@@ -1,0 +1,7 @@
+mutation CreateClientAddress(
+  $createClientAddressInput: ClientAddressCreateInput!
+) {
+  createClientAddress(createInput: $createClientAddressInput) {
+    ...fullClient
+  }
+}

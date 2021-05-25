@@ -1,0 +1,5 @@
+query SearchPatients($clientKey: String!) {
+  searchPatients(clientKey: $clientKey) {
+    ...fullPatient
+  }
+}

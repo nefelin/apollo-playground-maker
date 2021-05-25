@@ -1,0 +1,9 @@
+fragment localization on Localization {
+  country
+  countryName
+  statesOrProvinces
+  governmentIssuedIDTypes
+  ituNumber
+  addressFormat
+  contactMethods
+}

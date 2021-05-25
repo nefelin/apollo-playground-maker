@@ -1,0 +1,5 @@
+mutation CreateClient($createClientInput: ClientCreateInput!) {
+  createClient(createInput: $createClientInput) {
+    ...fullClient
+  }
+}
