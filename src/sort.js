@@ -26,7 +26,7 @@ const documentSort = (docSortType, docSortOrder, documents) => {
 
 const contentSort = (docSortType, direction = SortOrders.DESC, tabs, fragmentsLast) => {
   for (let [tabName, { query }] of Object.entries(tabs)) {
-    const splitSorted = query.split(formatDelimiter).sort();
+    const splitSorted = query.split(formatDelimiter).map(x => x.trim()).sort();
     if (direction === SortOrders.ASC) {
       splitSorted.reverse();
     }
@@ -40,8 +40,6 @@ const contentSort = (docSortType, direction = SortOrders.DESC, tabs, fragmentsLa
 };
 
 const scoreFragment = (singleRawSDL) => singleRawSDL.split(' ')[0] === 'fragment' ? 100000000 : -10000000;
-
-
 
 const docFilenameSort = (direction = SortOrders.DESC) => {
   return (a, b) => {
