@@ -1,16 +1,16 @@
-##What Is It?
+## What Is It?
 apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. Apollo's graphQL playground accepts an array of tabs as part of it's setup in the shape of.
 
-##Add bits here about added endpoint/headers
+# Add bits here about added endpoint/headers
 
 This allows one to supply pre-populated tab-content for the playground. This could be used in a number of ways, but I have found myself
 using it as a sort of swagger-like tool to test the graphQL operations the I have implemented inside my app. Note this only makes sense
 if your graphQL API and your front-end app are tightly coupled, as in the backend for frontend[cite] pattern.
 
-##How It Works
+## How It Works
 apollo-playground-maker with it's default settings, will aggregate graphQL operations and attempt to group them in sensible tabs.
-
-####Tab Grouping
+ 
+#### Tab Grouping
 APM determine tab names by trimming shared path information and using the first divergence as the depth the use for tab names.
 For example, give the following directory structure:
 ```
@@ -30,10 +30,10 @@ components/
 | components/\*\*/\*.gql          | users, posts                      | other\_dir tab also contains queries found in sub\_dir                                    |
 | components/posts/\*\*/\*.gql    | GetPost.gql, responses            | Because of this behavior, it's recommended to point APM at an empty directory             |
 
-###Non GQL Files
+### Non GQL Files
 In addition to aggregating graphQL operations, APM can aggregate query responses and query variable.
 
-####Query Variables
+#### Query Variables
 APM can attempt to hydrate query variables in two different ways. When APM encounters a named variable inside an operation, i.e. ```query Animal($species: String)```,
 it will look for a ```species``` variable and add that to the query variables for the tab where the query will appear. APM will attempt to hydrate query variables only when passed the
 ```varFileName``` option.
@@ -45,11 +45,11 @@ If the ```varFileName``` contains directory information i.e. ```src/queryVars.ts
 If the ```varFileName``` contains NO directory information i.e. ```queryVars.ts```, APM will look for a ```queryVars.ts``` file in the same directory as the operation utilizing
 the argument.
 
-####Response Text
+#### Response Text
 If passed a ```responsesFilename``` option, APM will look for a responses file whererever ```.gql``` files are encountered, aggregating those per tab.
 
 
-###Options and Defaults
+### Options and Defaults
 | Option            | Default Value | Description                                                                                                                |
 |-------------------|---------------|----------------------------------------------------------------------------------------------------------------------------|
 | responsesFilename |               | Filename to look for alongside GQL files to populate playground's Responses panel                                          |
