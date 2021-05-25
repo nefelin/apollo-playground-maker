@@ -61,3 +61,20 @@ If passed a ```responsesFilename``` option, APM will look for a responses file w
 | docSortOrder      | desc          | Asc, or Desc. How are documents ordered during sorting                                                                     |
 | varWarningReport  | required      | All, Required, or None. When should APM warn that it was unable to find a query variable for a given query                 |
 | varWarningDetail  | high          | High, or Low. What level of detail should APM provide when warning of missing query variables                              |
+
+### Example codegen.yml
+```
+overwrite: true
+schema: "src/gql/schema.gql"
+generates:
+  generated/main.json:
+    documents: "./src/components/other_dir/**/*.gql"
+    plugins:
+      - "apollo-playground-maker"
+    config:
+      varFileName: "./src/gql/queryVars.ts"
+      docSortType: "content"
+      missingVarWarning:
+        report: 'all'
+        detail: 'high'
+```
