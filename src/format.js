@@ -13,13 +13,10 @@ const arrayFromTabs = (tabs) => {
   return ar;
 };
 
-const addEndpointAndHeaders = (endpoint, headers, tabArray) => tabArray.map(tab => ({...tab, endpoint, headers}));
-
 const formatDelimiter = '\n\n';
 
 module.exports = {
   formatTabArray,
   formatDelimiter,
   arrayFromTabs,
-  addEndpointAndHeaders
 };

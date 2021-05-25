@@ -1,6 +1,6 @@
 require('ts-node').register();
 const { contentSort, documentSort, SortTypes } = require('./sort');
-const { addEndpointAndHeaders, formatTabArray, arrayFromTabs } = require('./format');
+const { formatTabArray, arrayFromTabs } = require('./format');
 const { parseResponses, parseQueries, parseQueryVars } = require('./parse');
 const { validateConfig, configDefaults } = require('./config');
 
@@ -60,8 +60,9 @@ const tabsFromLocations = (dirNames, insertBlankTab) => {
   return tabs;
 };
 
-const insertTab = () => ({name: 'New Tab', query: '', variables: '', responses: [] });
-const blankTab = () => ({ query: '', variables: {}, responses: '' });
+const DefaultEndpoint = 'http://localhost:4000/graphql';
+const insertTab = () => ({ name: 'New Tab', query: '', variables: '', responses: [], endpoint: DefaultEndpoint });
+const blankTab = () => ({ query: '', variables: {}, responses: '', endpoint: DefaultEndpoint });
 
 const flattenLocations = (locations) => {
   if (locations.length === 1) {
@@ -85,5 +86,4 @@ const getDirName = (fullPath) => {
 
 module.exports = {
     plugin,
-    addEndpointAndHeaders
 };
