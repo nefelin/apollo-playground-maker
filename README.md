@@ -67,7 +67,7 @@ If passed a ```responsesFilename``` option, APM will look for a responses file w
 overwrite: true
 schema: "src/gql/schema.gql"
 generates:
-  generated/main.json:
+  generated/playgroundTabs.json:
     documents: "./src/components/other_dir/**/*.gql"
     plugins:
       - "apollo-playground-maker"
