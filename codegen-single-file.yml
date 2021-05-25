@@ -1,0 +1,15 @@
+overwrite: true
+schema: "test-single-file/schema.gql"
+generates:
+  generated/single-operation-file.json:
+    documents: "test-single-file/components/**/*.{gql,ts}"
+    plugins:
+      ./src/main.js
+    config:
+      varFileName: "./test-single-file/queryVars.ts"
+      docSortType: "content"
+      missingVarWarning:
+        report: 'all'
+        detail: 'high'
+      responsesFilename: "gqlResponse.txt"
+

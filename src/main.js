@@ -17,10 +17,11 @@ module.exports = {
       responsesFilename,
       docSortType,
       docSortOrder,
-      queryVarsPath,
+      varFileName,
       missingVarWarning,
       insertBlankTab,
       fragmentsLast,
+      varFileType,
     } = configWithDefaults;
 
 
@@ -37,8 +38,8 @@ module.exports = {
 
     parseQueries(tabs, docsWithDirName, dirNames);
 
-    if (queryVarsPath) {
-      parseQueryVars(docsWithDirName, tabs, queryVarsPath, missingVarWarning, colorLogs);
+    if (varFileName) {
+      parseQueryVars(docsWithDirName, tabs, varFileName, missingVarWarning, colorLogs);
     }
 
     if (responsesFilename) {

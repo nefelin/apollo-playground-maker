@@ -9,7 +9,13 @@ const MissingVarWarningsDetail = {
     LOW: 'LOW'
 };
 
+const VarFileTypes = {
+    SINGLE: "SINGLE",
+    MANY: "MANY"
+};
+
 module.exports = {
     MissingVarWarningsDetail,
-    MissingVarWarningLevels
+    MissingVarWarningLevels,
+    VarFileTypes
 }

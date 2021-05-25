@@ -16,12 +16,12 @@ const colors = require('colors');
  */
 const arraySuffix = 'Array';
 
-const parseQueryVars = (documents, tabs, varsPath, missingVarWarningConfig, colorLogs) => {
+const parseQueryVars = (documents, tabs, varFileName, missingVarWarningConfig, colorLogs) => {
     if (!colorLogs) {
         colors.disable()
-    };
+    }
 
-    const fixedPath = fixPath(varsPath);
+    const fixedPath = fixPath(varFileName);
 
     const { report, detail } = missingVarWarningConfig;
 
@@ -57,16 +57,24 @@ const parseQueryVars = (documents, tabs, varsPath, missingVarWarningConfig, colo
 
         const flatDefs = varDefs.reduce((acc, curr) => [...curr, ...acc]);
         flatDefs.forEach(({ varName, varType, listCount, isNullable }) => {
-            const lookFor = isBasicType(varType) ? varName : varNameFromType(varType, listCount);
-            const varsData = require(fixedPath)[lookFor];
-            if (!varsData) {
+            // const lookFor = isBasicType(varType) ? varName : varNameFromType(varType, listCount);
+            const lookFor = varName;
+
+            const varFilePath = filenameHasPath(varFileName) ? fixedPath : path.join(path.dirname(doc.location), varFileName); // full path means use single file, filename only means look for this pattern at each doc.
+            const varFileData = require(varFilePath);
+
+            const maybeFlatExport = varFileData[lookFor];
+            const maybeDefaultExport = varFileData.default?.[lookFor];
+            const varData = maybeFlatExport || maybeDefaultExport;
+
+            if (varData === undefined || varData === null) {
                 switch (report.toUpperCase()) {
                     case MissingVarWarningLevels.ALL:
-                        warnOfMissingVar(doc, lookFor, varType, listCount, varName, fixedPath, detail);
+                        warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, detail);
                         break;
                     case MissingVarWarningLevels.REQUIRED:
                         if (!isNullable) {
-                            warnOfMissingVar(doc, lookFor, varType, listCount, varName, fixedPath, detail);
+                            warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, detail);
                         }
                         break;
                     default:
@@ -74,7 +82,7 @@ const parseQueryVars = (documents, tabs, varsPath, missingVarWarningConfig, colo
                 }
                 return;
             }
-            tabs[doc.docDir].variables = { ...tabs[doc.docDir].variables, [varName]: varsData };
+            tabs[doc.docDir].variables = { ...tabs[doc.docDir].variables, [varName]: varData };
         });
     });
 };
@@ -100,6 +108,7 @@ const warnOfMissingVar = (doc, lookFor, varType, listCount, varName, fixedPath, 
 };
 
 const fixPath = (rawPath) => path.resolve(process.cwd(), rawPath);
+const filenameHasPath = (fileName) => fileName.split(path.sep).length > 1;
 
 const varNameFromType = (varType, listCount) => lowerFirstLetter(varType) + arraySuffix.repeat(listCount);
 const arrayifyVarType = (varType, listCount) => varType + '[]'.repeat(listCount);

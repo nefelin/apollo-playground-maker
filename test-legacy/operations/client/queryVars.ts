@@ -25,8 +25,6 @@ const noteKey = '';
 const phoneKey = '853e6dc5-3284-43e8-b4e5-8e296f97ff13';
 const addressKey = '67c1ae73-441a-46c3-a0b1-d404ecab6c03';
 
-export const page = 0;
-export const pageSize = 5;
 const queryVariables: ClientQueryVariables = {
   clientKey,
   page: 0,

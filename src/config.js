@@ -1,5 +1,5 @@
 const { SortTypes, SortOrders } = require('./sort');
-const { MissingVarWarningLevels, MissingVarWarningsDetail } = require('./parse/types');
+const { MissingVarWarningLevels, MissingVarWarningsDetail, VarFileTypes } = require('./parse/types');
 
 const validateConfig = (config) => {
   const availableOpts = Object.keys(configDefaults);
@@ -30,13 +30,23 @@ const validateConfig = (config) => {
         )}`,
     );
   }
+
+  const varFileTypeOptions = Object.keys(VarFileTypes);
+  if (!varFileTypeOptions.includes(config.varFileType.toUpperCase())) {
+    throw new Error(
+        `Unrecognized varFileType option value '${config.varFileType}', available options are: ${varFileTypeOptions.join(
+            ', ',
+        )}`,
+    );
+  }
 };
 
 const configDefaults = {
   responsesFilename: undefined,
   docSortType: SortTypes.CONTENT,
   docSortOrder: SortOrders.DESC,
-  queryVarsPath: undefined,
+  varFileName: undefined,
+  varFileType: VarFileTypes.SINGLE,
   missingVarWarning: {
     report: MissingVarWarningLevels.REQUIRED,
     detail: MissingVarWarningsDetail.HIGH

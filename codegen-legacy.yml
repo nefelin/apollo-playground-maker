@@ -1,0 +1,13 @@
+overwrite: true
+generates:
+  generated/legacy.json:
+    documents: "test-legacy/**/*.{gql,ts}"
+    schema: "test-legacy/schema.gql"
+    plugins:
+      ./src/main.js
+    config:
+      varFileName: "queryVars.ts"
+      docSortType: "content"
+      missingVarWarning:
+        report: 'all'
+        detail: 'high'

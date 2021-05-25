@@ -1,6 +1,4 @@
 
-import { clientKey } from '../client/playgroundQueryVariables';
-
 interface PatientQueryVaraiables {
   patientKey: string;
   clientKey: string;
@@ -10,14 +8,19 @@ interface PatientQueryVaraiables {
   updatePatientNoteInput: any;
   deletePatientNoteInput: any;
   searchPatientNoteInput: any;
+  page: number;
+  pageSize: number;
 }
 
 const patientKey = 'fec887a4-b640-4424-9530-ab7c42125561';
 const practiceKey = 'someKey';
 const primaryVetKey = 'someKey';
-const noteKey = '';
+const noteKey = 'someKey';
+const clientKey = 'someKey';
 
 const queryVariables: PatientQueryVaraiables = {
+  page: 0,
+  pageSize: 5,
   patientKey,
   clientKey,
   createPatientInput: {

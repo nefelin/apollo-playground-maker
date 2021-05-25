@@ -1,0 +1,1162 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PatientNote {
+  id: ID!
+  noteKey: String!
+  patientKey: String!
+  userKey: String!
+  userPrefix: String!
+  userGivenName: String!
+  userFamilyName: String!
+  note: String!
+  contextCode: NoteContextCode!
+  isDeleted: Boolean!
+  createdDate: String!
+  modifiedDate: String!
+}
+
+enum NoteContextCode {
+  NONE
+  PHARMACY
+  CALL_CENTER
+  AUTOSHIP
+}
+
+type PaginatedPatientNotes {
+  notes: [PatientNote!]!
+  currentPage: Float!
+  pageSize: Float!
+  totalPages: Float!
+  totalResults: Float!
+}
+
+type Patient {
+  id: ID!
+  dateOfBirth: DateString!
+  patientKey: String!
+  practiceKey: String!
+  name: String!
+  clients: [PatientClient!]!
+  speciesCode: SpeciesCode!
+  weight: String!
+  weightUnitCode: WeightUnitCode!
+  sexCode: SexCode!
+  isAltered: Boolean
+  primaryVetKey: String!
+  isActive: Boolean!
+  breedCode: BreedCode
+  knownAllergies: String
+  otherMedications: String
+  healthConditions: String
+  createdDate: String!
+  modifiedDate: String!
+  patientNotes(page: Int = 0, pageSize: Int = 5): PaginatedPatientNotes
+}
+
+"""
+Custom date scalar, expects ISO date with no timestamp and no timezone, in the format YYYY-MM-DD
+"""
+scalar DateString
+
+enum SpeciesCode {
+  DOG
+  CAT
+  REPTILE
+  OTHER
+  HORSE
+  BIRD
+  SMALL_MAMMAL
+}
+
+enum WeightUnitCode {
+  LBS
+  KGS
+}
+
+enum SexCode {
+  Male
+  Female
+  Unknown
+}
+
+enum BreedCode {
+  ABYSSIAN
+  ABYSSINIAN
+  AFFENPINSCHER
+  AFGHAN
+  AFRICAN_GREY_PARROT
+  AIREDALE
+  AKBASH
+  AKHAL_TEKE
+  AKITA
+  ALASKAN_MALAMUTE
+  ALBANIAN
+  ALPACA
+  ALTAI
+  AMAZON_PARROT
+  AMERICAN_BOBTAIL
+  AMERICAN_BULLDOG
+  AMERICAN_COCKER_SPANIEL
+  AMERICAN_CREAM_DRAFT
+  AMERICAN_CREME_AND_WHITE
+  AMERICAN_CURL
+  AMERICAN_CURLY
+  AMERICAN_ESKIMO
+  AMERICAN_ESKIMO_MINIATURE
+  AMERICAN_FOXHOUND
+  AMERICAN_GAITED_MOUNTAIN_HORSE
+  AMERICAN_GAITED_PONY
+  AMERICAN_PITBULL
+  AMERICAN_SADDLEBRED
+  AMERICAN_SHORTHAIR
+  AMERICAN_STAFFORDSHIRE
+  AMERICAN_WALKING_PONY
+  AMERICAN_WARMBLOOD
+  AMERICAN_WATER_SPANIEL
+  AMERICAN_WIREHAIR
+  ANATOLIAN_SHEPHERD
+  ANDALUSIAN
+  ANDRAVIDA
+  ANGLO_ARAB
+  ANGLO_KABARDA
+  ANTEATER
+  ANTELOPE
+  APPALOOSA
+  APPENDIX_QUARTER_HORSE
+  ARAAPPALOOSA
+  ARABIAN
+  ARABIAN_SPORTHORSE
+  ARDENNES
+  ARGENTINE_CRIOLLO
+  ARGENTINE_DOGO
+  ARMADILLO
+  ASTURIAN
+  AUSTRALIAN_BRUMBY
+  AUSTRALIAN_CATTLE_DOG
+  AUSTRALIAN_KELPIE
+  AUSTRALIAN_MIST
+  AUSTRALIAN_SHEPHERD
+  AUSTRALIAN_STOCK_HORSE
+  AUSTRALIAN_TERRIER
+  AZAWAKH
+  AZTECA
+  BADGER
+  BALD_EAGLE
+  BALEARIC
+  BALINESE
+  BALL_PYTHON
+  BALUCHI
+  BANEI
+  BANKER
+  BANK_MYNAH_
+  BARB
+  BARMAN
+  BASENJI
+  BASHKIR
+  BASHKIR_CURLY
+  BASOTHO_PONY
+  BASSET_HOUND
+  BAT
+  BEAGLE
+  BEAR
+  BEARDED_COLLIE
+  BEARDED_DRAGON
+  BEAUCERON
+  BEAVER
+  BEDLINGTON_TERRIER
+  BELGIAN
+  BELGIAN_MALINOIS
+  BELGIAN_SHEEPDOG
+  BELGIAN_WARMBLOOD
+  BENGAL
+  BERNESE_MOUNTAIN_DOG
+  BHIRUM_PONY
+  BHOTIA_PONY
+  BICHON_FRISE
+  BINTURONG
+  BLACK_AND_TAN_COONHOUND
+  BLACK_FOREST
+  BLACK_RUSSIAN_TERRIER
+  BLOODHOUND
+  BLUE_EYED_HORSE_ASSOCIATION
+  BLUE_LACY
+  BLUE_TONGUED_SKINK
+  BOA_CONSTRICTOR
+  BOBCAT
+  BOER
+  BOMBAY
+  BORDER_COLLIE
+  BORDER_TERRIER
+  BORZOI
+  BOSTON_TERRIER
+  BOUVIER_DES_FLANDRES
+  BOVINE
+  BOXER
+  BOX_TURTLE
+  BRANDENBURGER
+  BREASTED_COCKATOO
+  BRETON
+  BRIARD
+  BRITISH_SHORTHAIR
+  BRITTANY_SPANIEL
+  BRUSSELS_GRIFFON
+  BUCKSKIN
+  BUDYONNY
+  BULLDOG
+  BULLMASTIFF
+  BULL_TERRIER
+  BURMESE
+  BURMESE_PYTHON
+  BURMILLA
+  BYELORUSSIAN_HARNESS
+  CAIRN_TERRIER
+  CALIFORNIA_SPANGLED
+  CAMARGUE
+  CAMEL
+  CAMPOLINA
+  CANAAN_DOG
+  CANADIAN_ESKIMO
+  CANADIAN_HORSE
+  CANADIAN_SPORT_HORSE
+  CANARY
+  CARDINAL
+  CARPET_PYTHON
+  CARTHUSIAN
+  CASPIAN
+  CATAHOULA_LEOPARD_HOUND
+  CAVALIER_KING_CHARLES_SPANIEL
+  CAYUSE
+  CESKY
+  CEYLON
+  CHAMELEON
+  CHARTREUX
+  CHATTERING_LORY
+  CHEJU
+  CHESAPEAKE_BAY_RETRIEVER
+  CHICKEN
+  CHIHUAHUA_LONG_HAIRED
+  CHIHUAHUA_SHORT_HAIRED
+  CHILEAN_CORRALERO
+  CHIMPANZEE
+  CHINCHILLA
+  CHINCOTEAGUE_PONY
+  CHINESE_CRESTED
+  CHOW_CHOW
+  CIRNECO_DELL_ETNA
+  CLEVELAND_BAY
+  CLUMBER_SPANIEL
+  CLYDESDALE
+  COATIMUNDI
+  COCKATIEL
+  COCKER_SPANIEL
+  COLLIE_ROUGH_COATED
+  COLLIE_SMOOTH_COATED
+  COLORADO_RANGER_HORSE
+  COLORPOINT_SHORTHAIR
+  CONNEMARA
+  CORAL
+  CORDON_BLEU
+  CORNISH_REX
+  CORN_SNAKE
+  COTON_DE_TULEARS
+  COUGAR
+  CREMELLO
+  CRESTED_GECKO
+  CRIOULO
+  CURLY_COATED_RETRIEVER
+  CUTTHROAT_FINCH
+  CYMRIC
+  DACHSHUND_MINIATURE
+  DACHSHUND_STANDARD
+  DALES_PONY
+  DALMATIAN
+  DANDIE_DINMONT_TERRIER
+  DANISH_WARMBLOOD
+  DANUBE
+  DARTMOOR_PONY
+  DEER
+  DEGU
+  DELIBOZ
+  DEVON_REX
+  DJERMA
+  DOBERMAN_PINSCHER
+  DOGUE_DE_BORDEAUX
+  DOLE
+  DOLPHIN
+  DOMESTIC_LONGHAIR
+  DOMESTIC_LYNX
+  DOMESTIC_MEDIUMHAIR
+  DOMESTIC_SHORTHAIR
+  DONGOLA
+  DONKEY
+  DRAFT
+  DRAFT_CROSS
+  DRUM_HORSE
+  DUCK
+  DUTCH_DRAFT
+  DUTCH_HARNESS
+  DUTCH_WARMBLOOD
+  EAST_BULGARIAN
+  EGYPTIAN
+  EGYPTIAN_MAU
+  ELEPHANT
+  ELK
+  EMERALD_TOUCAN
+  ENGLISH_BULLDOG
+  ENGLISH_COCKER_SPANIEL
+  ENGLISH_SETTER
+  ENGLISH_SHEPHERD
+  ENGLISH_SPRINGER_SPANIEL
+  ENGLISH_TOY_SPANIEL
+  ENTLEBUCHER_MOUNTAIN
+  ERISKAY_PONY
+  ESTONIAN_NATIVE
+  EURASIER
+  EUROPEAN_BURMESE
+  EUROPEAN_SHORTHAIR
+  EXMOOR_PONY
+  EXOTIC
+  FALABELLA
+  FALCON
+  FAT_TAILED_GECKO
+  FELL_PONY
+  FERRET
+  FIELD_SPANIEL
+  FILA_BRASILEIRO
+  FINNHORSE
+  FINNISH_SPITZ
+  FISH
+  FJORD
+  FLAT_COATED_RETRIEVER
+  FLEUVE
+  FLORIDA_CRACKER
+  FOUNDATION_QUARTER_HORSE
+  FOUTA
+  FOX
+  FOX_TERRIER_SMOOTH_VARIETY
+  FOX_TERRIER_WIRE_VARIETY
+  FREDERIKSBORG
+  FRENCH_BULLDOG
+  FRENCH_SADDLEBRED
+  FRENCH_TROTTER
+  FRIESIAN
+  FRIESIAN_CROSS
+  FROG
+  GALICERIO
+  GALICIAN_PONY
+  GARTER_SNAKE
+  GECKO
+  GELDERLANDER
+  GERBIL
+  GERMAN_BRED
+  GERMAN_REX
+  GERMAN_RIDING_PONY
+  GERMAN_SHEPHERD
+  GERMAN_SHORTHAIRED_POINTER
+  GERMAN_WIREHAIRED_POINTER
+  GIANT_SCHNAUZER
+  GIDRAN
+  GIRAFFE
+  GOAT
+  GOFFINS_COCKATOO
+  GOLDENDOODLE
+  GOLDEN_AMERICAN_SADDLEBRED
+  GOLDEN_RETRIEVER
+  GOLD_BREASTED_WAXBILL
+  GOOSE
+  GOPHER_SNAKE
+  GORDON_SETTER
+  GOTLAND
+  GRADE_BREED
+  GREATER_SULFUR
+  GREATER_SWISS_MOUNTAIN_DOG
+  GREAT_DANE
+  GREAT_PYRENEES
+  GREEN_ANOLE
+  GREEN_IGUANA
+  GREYHOUND
+  GRONINGEN
+  GROUNDHOG
+  GUANGXI
+  GUINEA_PIG
+  GYPSY_COB
+  GYPSY_VANNER
+  HACKNEY
+  HAFLINGER
+  HALF_ARABIAN
+  HAMSTER
+  HANOVERIAN
+  HARRIER
+  HAVANA_BROWN
+  HAVANESE
+  HEDGEHOG
+  HEQU
+  HIGHLAND_PONY
+  HIMALAYAN
+  HOCUL
+  HOKKAIDO
+  HOLSTEINER
+  HONEY_BEES
+  HUNGARIAN_WARMBLOOD
+  IBIZAN_HOUND
+  ICELANDIC
+  ICHABOD
+  IGUANA
+  IOMUD
+  IRISH_COB
+  IRISH_DRAUGHT
+  IRISH_SETTER
+  IRISH_SPORT_HORSE
+  IRISH_TERRIER
+  IRISH_WATER_SPANIEL
+  IRISH_WOLFHOUND
+  ITALIAN_GREYHOUND
+  ITALIAN_SPINONE
+  JACK_RUSSELL_TERRIER
+  JAPANESE_BOBTAIL
+  JAPANESE_CHIN
+  JAVANESE
+  JAVELINA
+  JINZHOU
+  JUTLAND
+  KABARDA
+  KANGAROO
+  KARABAIR
+  KARABAKH
+  KAZAKH
+  KEESHOND
+  KENTUCKY_MOUNTAIN_SADDLE_HORSE
+  KERRY_BLUE_TERRIER
+  KERRY_BOG_PONY
+  KIGER_MUSTANG
+  KINGSNAKE
+  KINKAJOU
+  KIRDI_PONY
+  KISBER_FELVER
+  KISO
+  KLADRUBY
+  KNABSTRUP
+  KOMONDOR
+  KORAT
+  KUSHUM
+  KUSTANAI
+  KUVASZ
+  LABRADOR_RETRIEVER
+  LAKELAND_TERRIER
+  LATVIAN
+  LA_PERM
+  LEMUR
+  LEONBERGER
+  LEOPARD
+  LEOPARD_GECKO
+  LHASA_APSO
+  LION
+  LIPIZZAN
+  LITHUANIAN_HEAVY_DRAFT
+  LIZARD
+  LLAMA
+  LOKAI
+  LOSINO
+  LOUISIANA_CATAHOULA
+  LOVEBIRD
+  LOWCHEN
+  LUSITANO
+  MACAW
+  MAINE_COON
+  MALOPOLSKI
+  MALTESE
+  MANCHESTER_TERRIER
+  MANDRILL
+  MANGALARGA
+  MANX
+  MAREMMA_SHEEPDOG
+  MARWARI
+  MASTIFF
+  MBAYAR
+  MERENS_PONY
+  MESSARA
+  MEXICAN_HAIRLESS
+  MILK_SNAKE
+  MINIATURE
+  MINIATURE_BULL_TERRIER
+  MINIATURE_PINSCHER
+  MINIATURE_SCHNAUZER
+  MINK
+  MISAKI
+  MISSOURI_FOX_TROTTING_HORSE
+  MIXED
+  MIYAKO
+  MOLUCCAN_COCKATOO
+  MONGOLIAN
+  MONITOR_LIZARD
+  MONKEY
+  MOOSE
+  MORAB
+  MORGAN
+  MOUNTAIN_PLEASURE_HORSE
+  MOUSE
+  MOYLE
+  MUD_TURTLE
+  MULE
+  MUNCHKIN
+  MURGESE
+  MUSTANG
+  NATIONAL_SHOW_HORSE
+  NEAPOLITAN_MASTIFF
+  NEWFOUNDLAND
+  NEWFOUNDLAND_PONY
+  NEW_KIRGIZ
+  NOLOTA
+  NOMA
+  NOOITGEDACHT_PONY
+  NORDLAND
+  NORFOLK_TERRIER
+  NORIC
+  NORTHEASTERN
+  NORTH_SWEDISH_HORSE
+  NORWEGIAN_BUHUNDT
+  NORWEGIAN_ELKHOUND
+  NORWEGIAN_FOREST
+  NORWICH_TERRIER
+  NOVA_SCOTIA_DUCK_TOLLING_RETRIEVER
+  OB
+  OCICAT
+  OLDENBURG
+  OLD_ENGLISH_SHEEPDOG
+  OPOSSUM
+  ORANGE_CHEEKED_WAXBILL
+  ORANGUTAN
+  ORIENTAL_LONGHAIR
+  ORIENTAL_SHORTHAIR
+  ORLOV_TROTTER
+  OTHER
+  OTTER
+  OTTERHOUND
+  PAINTED_TURTLE
+  PAINTS_ALL
+  PAINT_SOLID
+  PAINT_TOBIANO
+  PAINT_TOVERO
+  PAIN_OVERO
+  PALM_COCKATOO
+  PALOMINO
+  PANTANEIRO
+  PANTHER
+  PAPILLON
+  PARAKEET
+  PASO_FINO
+  PEKINGESE
+  PEKING_NIGHTINGALE
+  PENGUIN
+  PERCHERON
+  PERSIAN
+  PERUVIAN_PASO
+  PETERBALD
+  PETIT_BASSET_GRIFFON_VENDEEN
+  PIG
+  PINDOS_PONY
+  PINIA
+  PIXIE_BOB
+  PLOTT_HOUND
+  POA
+  POINTER
+  POMERANIAN
+  PONIES
+  POODLE
+  POODLE_MINIATURE
+  PORCINE
+  PORCUPINE
+  PORTUGUESE_WATER_DOG
+  POTTOK
+  PRACTICE
+  PRAIRIE_DOG
+  PRIMATE
+  PRZEWALSKI
+  PUG
+  PULI
+  PURA_RAZA_ESPANOLA
+  PYRENEAN_TARPAN
+  QATGANI
+  QUARAB
+  QUARTER_HORSE
+  QUARTER_HORSE_CROSS
+  QUARTER_PONY
+  RABBIT_AMERICAN
+  RABBIT_AMERICAN_CHINCHILLA
+  RABBIT_AMERICAN_FUZZY_LOP
+  RABBIT_AMERICAN_SABLE
+  RABBIT_ANGORA_ENGLISH
+  RABBIT_BELGIAN_HARE
+  RABBIT_BEVEREN
+  RABBIT_BRITANNIA_PETITE
+  RABBIT_CALIFORNIAN
+  RABBIT_CHAMPAGNE_DARGENT
+  RABBIT_CHECKERED_GIANT
+  RABBIT_CHINCHILLA
+  RABBIT_CINNAMON
+  RABBIT_CREME_DARGENT
+  RABBIT_DUTCH
+  RABBIT_DWARF_HOTOT
+  RABBIT_ENGLISH_LOP
+  RABBIT_ENGLISH_SPOT
+  RABBIT_FLEMISH_GIANT
+  RABBIT_FLORIDA_WHITE
+  RABBIT_FRENCH_ANGORA
+  RABBIT_FRENCH_LOP
+  RABBIT_GIANT_ANGORA
+  RABBIT_GIANT_CHINCHILLA
+  RABBIT_HARLEQUIN
+  RABBIT_HAVANA
+  RABBIT_HIMALAYAN
+  RABBIT_HOLLAND_LOP
+  RABBIT_HOTOT
+  RABBIT_JERSEY_WOOLY
+  RABBIT_LILAC
+  RABBIT_LIONHEAD
+  RABBIT_MINI_LOP
+  RABBIT_MINI_REX
+  RABBIT_NETHERLAND_DWARF
+  RABBIT_NEW_ZEALAND
+  RABBIT_PALOMINO
+  RABBIT_POLISH
+  RABBIT_REX
+  RABBIT_RHINELANDER
+  RABBIT_SATIN
+  RABBIT_SATIN_ANGORA
+  RABBIT_SILVER
+  RABBIT_SILVER_FOX
+  RABBIT_SILVER_MARTEN
+  RABBIT_TAN
+  RACCOON
+  RACKING_HORSE
+  RAGAMUFFIN
+  RAGDOLL_CAT_BREED
+  RAINBOW_BILLED_TOUCAN
+  RAT
+  RAT_SNAKE
+  RAT_TERRIER
+  RETICULATED_PYTHON
+  RHEINLAND_PFALZ_SAAR
+  RHINO
+  RHODESIAN_RIDGEBACK
+  ROCKY_MOUNTAIN
+  RODENT
+  ROOSTER
+  ROSE_BREASTED_COCKATOO
+  ROTTWEILER
+  RUSSIAN_BLUE
+  RUSSIAN_DON
+  RUSSIAN_HEAVY_DRAFT
+  RUSSIAN_TRAKHENER
+  RUSSIAN_TROTTER
+  SALUKI
+  SAMOYED
+  SANHE
+  SAVANNAH_MONITOR
+  SCHIPPERKE
+  SCHLESWINGER_HEAVY_DRAFT
+  SCHWARZWALDER_FUCHS
+  SCOTTISH_DEERHOUND
+  SCOTTISH_FOLD
+  SCOTTISH_TERRIER
+  SEAL
+  SEALYHAM_TERRIER
+  SELKIRK_REX
+  SELLE_FRANCAIS
+  SERENGETI
+  SHAGYA
+  SHARK
+  SHAR_PEI
+  SHEEP
+  SHELTER
+  SHETLAND_PONY
+  SHETLAND_SHEEPDOG
+  SHIBA_INU
+  SHIH_TZU
+  SHIRE
+  SIAMESE
+  SIBERIAN
+  SIBERIAN_HUSKY
+  SILKY_TERRIER
+  SINGAPURA
+  SINGLE_FOOTING_HORSE
+  SKUNK
+  SKYE_TERRIER
+  SKYROS_PONY
+  SLIDER_TURTLE
+  SNAKE
+  SNOWSHOE
+  SOFT_COATED_WHEATEN_TERRIER
+  SOMALI
+  SOMALI_PONY
+  SORRAIA
+  SOVIET_HEAVY_DRAFT
+  SPANGLED_COLBALT_BUDGERIGAR
+  SPANISH_BARB
+  SPANISH_MUSTANG
+  SPANISH_NORMAN
+  SPHYNX
+  SPOTTED_DRAFT
+  SPOTTED_MOUNTAIN_HORSE
+  SPOTTED_SADDLE
+  SQUIRREL
+  SQUIRREL_GLIDER
+  STABYHOUN
+  STAFFORDSHIRE_BULL_TERRIER
+  STANDARDBRED
+  STANDARD_POODLE
+  STANDARD_SCHNAUZER
+  STINGRAY
+  ST_BERNARD
+  SUDAN_COUNTRY_BRED
+  SUFFOLK
+  SUGAR_GLIDER
+  SUN_CONURE
+  SUSSEX_SPANIEL
+  SWAN
+  SWEDISH_WARMBLOOD
+  TAISHUH
+  TALKING_MYNAH
+  TARPAN
+  TAWLEED
+  TENNESSEE_WALKER
+  TERSK
+  THESSALIAN
+  THOROUGHBRED
+  THOROUGHBRED_CROSS
+  TIBETAN_SPANIEL
+  TIBETAN_TERRIER
+  TIGER
+  TIGER_HORSE
+  TOAD
+  TOKARA
+  TONTINES
+  TORI
+  TORTOISE
+  TOY_MANCHESTER_TERRIER
+  TRAKEHNER
+  TURKEY
+  TURKISH_ANGORA
+  TURKISH_VAN
+  TURTLE
+  UKRAINIAN_SADDLE
+  UNKNOWN
+  UROMASTYX
+  VIRGINIA_HIGHLANDER
+  VIZSLA
+  VLAAMPERD
+  VLADIMIR_HEAVY_DRAFT
+  VYATKA
+  WALKALOOSA
+  WALLABY
+  WALLAROO
+  WARMBLOOD
+  WARMBLOODS_ALL
+  WARMBLOOD_CROSS
+  WATER_DRAGON
+  WEIMARANER
+  WELARA_PONY
+  WELSH_COB
+  WELSH_CORGI_BEMBROKE
+  WELSH_CORGI_CARDIGAN
+  WELSH_PONY
+  WELSH_SPRINGER_SPANIEL
+  WELSH_TERRIER
+  WESTERN_SUDAN_PONY
+  WESTPHALIAN
+  WEST_AFRICAN_BARB
+  WEST_HIGHLAND_WHITE_TERRIER
+  WHALE
+  WHIPPET
+  WIELKOPOLSKI
+  WILDLIFE
+  WIREHAIRED_POINTED_GRIFFON
+  XILINGOL
+  YAKUT
+  YANQI
+  YELLOW_WINGED_GREEN_BUDGERIGAR
+  YILI
+  YONAGUNI
+  YORKSHIRE_TERRIER
+  ZANGERSHEIDE
+  ZANISKARI_PONY
+  ZEBRA
+  ZEBRA_FINCH
+  ZHEMAICHU
+  ZORSE
+}
+
+type PatientClient {
+  clientKey: String!
+}
+
+type ClientPhone {
+  id: ID!
+  phoneKey: String!
+  number: String!
+  extension: String
+  ituNumber: String!
+  isDeleted: Boolean!
+  hasMessaging: Boolean!
+  createdDate: String!
+  modifiedDate: String!
+}
+
+type ClientAddress {
+  id: ID!
+  addressKey: String!
+  line1: String!
+  line2: String
+  line3: String
+  city: String
+  stateOrProvince: String
+  postalCode: String!
+  country: CountryCode!
+  isDeleted: Boolean!
+  isAddressVerified: Boolean!
+  createdDate: String!
+  modifiedDate: String!
+}
+
+enum CountryCode {
+  US
+  AU
+  CA
+}
+
+type ClientNote {
+  id: ID!
+  userPrefix: String!
+  userGivenName: String!
+  userFamilyName: String!
+  noteKey: String!
+  clientKey: String!
+  userKey: String!
+  note: String!
+  contextCode: NoteContextCode!
+  isDeleted: Boolean!
+  createdDate: String!
+  modifiedDate: String!
+}
+
+type PaginatedClientNotes {
+  notes: [ClientNote!]!
+  currentPage: Float!
+  pageSize: Float!
+  totalPages: Float!
+  totalResults: Float!
+}
+
+type ClientEmail {
+  address: String!
+}
+
+type ClientMarketing {
+  hasEmailMarketing: Boolean!
+}
+
+type Client {
+  id: ID!
+  phoneNumbers: [ClientPhone!]
+  addresses: [ClientAddress!]
+  dateOfBirth: DateString
+  clientKey: String!
+  practiceKey: String!
+  title: String
+  prefix: String
+  givenName: String!
+  middleName: String
+  familyName: String!
+  email: ClientEmail!
+  primaryPhoneKey: String
+  preferredContactMethod: ContactMethodCode
+  governmentIssuedIDNumber: String
+  governmentIssuedIDType: GovernmentIdTypeCode
+  primaryAddressKey: String
+  isActive: Boolean!
+  acceptsGenerics: Boolean!
+  marketing: ClientMarketing
+  createdDate: String!
+  modifiedDate: String!
+  patients: [Patient!]
+  clientNotes(page: Int = 0, pageSize: Int = 5): PaginatedClientNotes
+}
+
+enum ContactMethodCode {
+  EMAIL
+  PHONE
+  TEXT
+}
+
+enum GovernmentIdTypeCode {
+  DRIVERS_LICENSE_NUMBER
+  PASSPORT_NUMBER
+}
+
+type Localization {
+  id: ID!
+  country: CountryCode!
+  countryName: String!
+  statesOrProvinces: [StateOrProvinceCode!]!
+  governmentIssuedIDTypes: [GovernmentIdTypeCode!]!
+  ituNumber: String!
+  addressFormat: String!
+  contactMethods: [ContactMethodCode!]!
+}
+
+enum StateOrProvinceCode {
+  ME
+  AL
+  FL
+  NC
+  SC
+  MA
+  NY
+  QC
+  BC
+  ON
+  WA
+  VIC
+  AU_QLD
+  AU_VIC
+  AU_WA
+}
+
+type Query {
+  referenceLocalization(countryCode: CountryCode!): Localization!
+  searchPatients(clientKey: String!): [Patient!]!
+  readPatient(patientKey: String!): Patient!
+  readPatientNote(noteKey: String!): PatientNote
+  searchPatientNotes(searchInput: PatientNoteSearchInput!): [PatientNote!]!
+  searchClients: [Client!]!
+  readClient(clientKey: String!): Client
+  emailAvailable(emailAvailableInput: ClientEmailAvailableInput!): Boolean!
+  readClientNote(noteKey: String!): ClientNote!
+  searchClientNotes(searchInput: ClientNoteSearchInput!): PaginatedClientNotes!
+}
+
+input PatientNoteSearchInput {
+  page: Int = 0
+  pageSize: Int = 5
+  patientKey: String!
+}
+
+input ClientEmailAvailableInput {
+  emailAddress: String!
+  practiceKey: String!
+}
+
+input ClientNoteSearchInput {
+  page: Int = 0
+  pageSize: Int = 5
+  clientKey: String!
+}
+
+type Mutation {
+  createPatient(createInput: PatientCreateInput!): Patient!
+  updatePatient(updateInput: PatientUpdateInput!): Patient!
+  deletePatient(patientKey: String!): Patient!
+  createPatientNote(createInput: PatientNoteCreateInput!): Boolean!
+  updatePatientNote(updateInput: PatientNoteUpdateInput!): Boolean!
+  deletePatientNote(deleteInput: PatientNoteDeleteInput!): PatientNote!
+  createClient(createInput: ClientCreateInput!): Client!
+  updateClient(updateInput: ClientUpdateInput!): Client!
+  createClientAddress(createInput: ClientAddressCreateInput!): Client!
+  updateClientAddress(updateInput: ClientAddressUpdateInput!): Client!
+  deleteClientAddress(deleteInput: ClientAddressDeleteInput!): Client!
+  createClientPhone(createInput: ClientPhoneCreateInput!): Client!
+  updateClientPhone(updateInput: ClientPhoneUpdateInput!): Client!
+  deleteClientPhone(deleteInput: ClientPhoneDeleteInput!): Client!
+  createClientNote(createInput: ClientNoteCreateInput!): Boolean!
+  updateClientNote(updateInput: ClientNoteUpdateInput!): Boolean!
+  deleteClientNote(deleteInput: ClientNoteDeleteInput!): ClientNote!
+  dangerouslyResetDbWithMockData(reseedConfig: MockDataLoaderInput): Boolean!
+}
+
+input PatientCreateInput {
+  dateOfBirth: DateString!
+  name: String!
+  clientKey: String!
+  practiceKey: String!
+  speciesCode: SpeciesCode!
+  weight: String!
+  weightUnitCode: WeightUnitCode!
+  sexCode: SexCode!
+  isAltered: Boolean
+  primaryVetKey: String!
+  breedCode: BreedCode
+  knownAllergies: String
+  otherMedications: String
+  healthConditions: String
+}
+
+input PatientUpdateInput {
+  dateOfBirth: DateString
+  name: String
+  clientKey: String
+  practiceKey: String
+  speciesCode: SpeciesCode
+  weight: String
+  weightUnitCode: WeightUnitCode
+  sexCode: SexCode
+  isAltered: Boolean
+  primaryVetKey: String
+  breedCode: BreedCode
+  knownAllergies: String
+  otherMedications: String
+  healthConditions: String
+  patientKey: String!
+  isActive: Boolean
+}
+
+input PatientNoteCreateInput {
+  patientKey: String!
+  note: String!
+  contextCode: NoteContextCode!
+}
+
+input PatientNoteUpdateInput {
+  patientKey: String!
+  note: String
+  contextCode: NoteContextCode
+  noteKey: String!
+}
+
+input PatientNoteDeleteInput {
+  patientKey: String!
+  noteKey: String!
+}
+
+input ClientCreateInput {
+  dateOfBirth: DateString
+  practiceKey: String!
+  title: String
+  prefix: String
+  givenName: String!
+  middleName: String
+  familyName: String!
+  email: ClientEmailInput!
+  phoneNumbers: [ClientPhoneCreateInput!]
+  primaryPhoneKey: String
+  preferredContactMethod: ContactMethodCode
+  governmentIssuedIDNumber: String
+  governmentIssuedIDType: GovernmentIdTypeCode
+  addresses: [ClientAddressCreateInput!]
+  primaryAddressKey: String
+  isActive: Boolean!
+  acceptsGenerics: Boolean!
+  marketing: ClientMarketingInput
+}
+
+input ClientEmailInput {
+  address: String!
+}
+
+input ClientPhoneCreateInput {
+  clientKey: String!
+  number: String!
+  extension: String
+  ituNumber: String!
+  hasMessaging: Boolean!
+  isPrimary: Boolean!
+}
+
+input ClientAddressCreateInput {
+  clientKey: String!
+  line1: String!
+  line2: String
+  line3: String
+  city: String
+  stateOrProvince: String
+  postalCode: String!
+  country: CountryCode!
+  isPrimary: Boolean
+}
+
+input ClientMarketingInput {
+  hasEmailMarketing: Boolean!
+}
+
+input ClientUpdateInput {
+  dateOfBirth: DateString
+  title: String
+  prefix: String
+  givenName: String
+  middleName: String
+  familyName: String
+  email: ClientEmailInput
+  preferredContactMethod: ContactMethodCode
+  governmentIssuedIDNumber: String
+  governmentIssuedIDType: GovernmentIdTypeCode
+  isActive: Boolean
+  acceptsGenerics: Boolean
+  marketing: ClientMarketingInput
+  clientKey: String!
+}
+
+input ClientAddressUpdateInput {
+  clientKey: String!
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  stateOrProvince: String
+  postalCode: String
+  country: CountryCode
+  isPrimary: Boolean
+  addressKey: String!
+}
+
+input ClientAddressDeleteInput {
+  clientKey: String!
+  addressKey: String!
+}
+
+input ClientPhoneUpdateInput {
+  clientKey: String!
+  number: String
+  extension: String
+  ituNumber: String
+  hasMessaging: Boolean
+  isPrimary: Boolean
+  phoneKey: String!
+}
+
+input ClientPhoneDeleteInput {
+  clientKey: String!
+  phoneKey: String!
+}
+
+input ClientNoteCreateInput {
+  clientKey: String!
+  note: String!
+  contextCode: NoteContextCode!
+}
+
+input ClientNoteUpdateInput {
+  clientKey: String!
+  note: String
+  contextCode: NoteContextCode
+  noteKey: String!
+}
+
+input ClientNoteDeleteInput {
+  clientKey: String!
+  noteKey: String!
+}
+
+input MockDataLoaderInput {
+  clientCount: Float
+  clientPhoneRange: RangeInput
+  clientAddressRange: RangeInput
+  patientRange: RangeInput
+  clientNoteRange: RangeInput
+  patientNoteRange: RangeInput
+}
+
+input RangeInput {
+  min: Float!
+  max: Float!
+}
