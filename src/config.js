@@ -14,18 +14,18 @@ const validateConfig = (config) => {
   }
 
   const varWarnReportOptions = Object.keys(MissingVarWarningLevels);
-  if (!varWarnReportOptions.includes(config.missingVarWarning.report.toUpperCase())) {
+  if (!varWarnReportOptions.includes(config.varWarningReport.toUpperCase())) {
     throw new Error(
-        `Unrecognized missingVarWarning.report option value '${config.missingVarWarning.report}', available options are: ${varWarnReportOptions.join(
+        `Unrecognized varWarningReport option value '${config.varWarningReport}', available options are: ${varWarnReportOptions.join(
             ', ',
         )}`,
     );
   }
 
   const varWarnDetailOptions = Object.keys(MissingVarWarningsDetail);
-  if (!varWarnDetailOptions.includes(config.missingVarWarning.detail.toUpperCase())) {
+  if (!varWarnDetailOptions.includes(config.varWarningDetail.toUpperCase())) {
     throw new Error(
-        `Unrecognized missingVarWarning.detail option value '${config.missingVarWarning.detail}', available options are: ${varWarnDetailOptions.join(
+        `Unrecognized varWarningDetail option value '${config.varWarningDetail}', available options are: ${varWarnDetailOptions.join(
             ', ',
         )}`,
     );
@@ -36,14 +36,12 @@ const configDefaults = {
   responsesFilename: undefined,
   docSortType: SortTypes.CONTENT,
   docSortOrder: SortOrders.DESC,
-  varFileName: undefined,
-  missingVarWarning: {
-    report: MissingVarWarningLevels.REQUIRED,
-    detail: MissingVarWarningsDetail.HIGH
-  },
+  varFilename: undefined,
+  varWarningReport: MissingVarWarningLevels.REQUIRED,
+  varWarningDetail: MissingVarWarningsDetail.HIGH,
   insertBlankTab: true,
   fragmentsLast: true,
-  colorLogs: true,
+  color: true,
 };
 
 module.exports = {

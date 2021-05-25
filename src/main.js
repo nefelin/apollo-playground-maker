@@ -12,11 +12,11 @@ const plugin = (schema, documents, config, info) => {
     validateConfig(configWithDefaults);
 
     const {
-      colorLogs,
+      color,
       responsesFilename,
       docSortType,
       docSortOrder,
-      varFileName,
+      varFilename,
       missingVarWarning,
       insertBlankTab,
       fragmentsLast,
@@ -37,8 +37,8 @@ const plugin = (schema, documents, config, info) => {
 
     parseQueries(tabs, docsWithDirName, dirNames);
 
-    if (varFileName) {
-      parseQueryVars(docsWithDirName, tabs, varFileName, missingVarWarning, colorLogs);
+    if (varFilename) {
+      parseQueryVars(docsWithDirName, tabs, varFilename, missingVarWarning, color);
     }
 
     if (responsesFilename) {
@@ -87,4 +87,3 @@ module.exports = {
     plugin,
     addEndpointAndHeaders
 };
-

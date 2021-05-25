@@ -16,12 +16,12 @@ const colors = require('colors');
  */
 const arraySuffix = 'Array';
 
-const parseQueryVars = (documents, tabs, varFileName, missingVarWarningConfig, colorLogs) => {
-    if (!colorLogs) {
+const parseQueryVars = (documents, tabs, varFilename, missingVarWarningConfig, color) => {
+    if (!color) {
         colors.disable()
     }
 
-    const fixedPath = fixPath(varFileName);
+    const fixedPath = fixPath(varFilename);
 
     const { report, detail } = missingVarWarningConfig;
 
@@ -55,12 +55,12 @@ const parseQueryVars = (documents, tabs, varFileName, missingVarWarningConfig, c
                 }),
             );
 
-        const flatDefs = varDefs.reduce((acc, curr) => [...curr, ...acc]);
-        flatDefs.forEach(({ varName, varType, listCount, isNullable }) => {
+        const flatDefs = varDefs?.reduce((acc, curr) => [...curr, ...acc], []);
+        flatDefs?.forEach(({ varName, varType, listCount, isNullable }) => {
             // const lookFor = isBasicType(varType) ? varName : varNameFromType(varType, listCount);
             const lookFor = varName;
 
-            const varFilePath = filenameHasPath(varFileName) ? fixedPath : path.join(path.dirname(doc.location), varFileName); // full path means use single file, filename only means look for this pattern at each doc.
+            const varFilePath = filenameHasPath(varFilename) ? fixedPath : path.join(path.dirname(doc.location), varFilename); // full path means use single file, filename only means look for this pattern at each doc.
             const varFileData = require(varFilePath);
 
             const maybeFlatExport = varFileData[lookFor];

@@ -2,17 +2,13 @@ overwrite: true
 schema: "test-main/schema.gql"
 generates:
   generated/main.json:
-    documents: "test-main/components/**/*.{gql,ts}"
+    documents: "test-main/components/other_dir/**/*.gql"
     plugins:
       ./src/main.js
-    config:
-      varFileName: "./test-main/queryVars.ts"
-      docSortType: "content"
-#      colorLogs: false
-      #      insertBlankTab: false
-      #      fragmentsLast: false
-      #      docSortOrder: "asc"
-      missingVarWarning:
-        report: 'all'
-        detail: 'high'
-      responsesFilename: "gqlResponse.txt"
+#    config:
+#      varFileName: "./test-main/queryVars.ts"
+#      docSortType: "content"
+#      missingVarWarning:
+#        report: 'all'
+#        detail: 'high'
+#      responsesFilename: "gqlResponse.txt"
