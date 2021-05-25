@@ -1,16 +1,14 @@
-##What Is It?
-apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. Apollo's graphQL playground accepts an array of tabs as part of it's setup in the shape of.
-
-##Add bits here about added endpoint/headers
+## What Is It?
+apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. ```apollo-server``` allows you to pass an array of tab configurations as part of the playground setup. [site]
 
 This allows one to supply pre-populated tab-content for the playground. This could be used in a number of ways, but I have found myself
 using it as a sort of swagger-like tool to test the graphQL operations the I have implemented inside my app. Note this only makes sense
 if your graphQL API and your front-end app are tightly coupled, as in the backend for frontend[cite] pattern.
 
-##How It Works
+## How It Works
 apollo-playground-maker with it's default settings, will aggregate graphQL operations and attempt to group them in sensible tabs.
-
-####Tab Grouping
+ 
+#### Tab Grouping
 APM determine tab names by trimming shared path information and using the first divergence as the depth the use for tab names.
 For example, give the following directory structure:
 ```
@@ -30,10 +28,10 @@ components/
 | components/\*\*/\*.gql          | users, posts                      | other\_dir tab also contains queries found in sub\_dir                                    |
 | components/posts/\*\*/\*.gql    | GetPost.gql, responses            | Because of this behavior, it's recommended to point APM at an empty directory             |
 
-###Non GQL Files
+### Non GQL Files
 In addition to aggregating graphQL operations, APM can aggregate query responses and query variable.
 
-####Query Variables
+#### Query Variables
 APM can attempt to hydrate query variables in two different ways. When APM encounters a named variable inside an operation, i.e. ```query Animal($species: String)```,
 it will look for a ```species``` variable and add that to the query variables for the tab where the query will appear. APM will attempt to hydrate query variables only when passed the
 ```varFileName``` option.
@@ -45,11 +43,23 @@ If the ```varFileName``` contains directory information i.e. ```src/queryVars.ts
 If the ```varFileName``` contains NO directory information i.e. ```queryVars.ts```, APM will look for a ```queryVars.ts``` file in the same directory as the operation utilizing
 the argument.
 
-####Response Text
+#### Response Text
 If passed a ```responsesFilename``` option, APM will look for a responses file whererever ```.gql``` files are encountered, aggregating those per tab.
 
+### Endpoints and Headers
 
-###Options and Defaults
+APM provides a sensible default for the endpoint of each tab (```http://localhost:4000/graphql```), but this may not always be appropriate. In circumstances where you need to adjust this (for example dev/qa/stage/prod all have different urls), it may be necessary to map the appropriate endpoint url onto the generated tabs. You might use the same approach for any headers you'd like to provide. For example:
+```
+const apolloPlaygroundTabs = require('generated/tabs.json');
+const endpoint = getEndpointForThisEnv();
+const tabs = apolloPlaygroundTabs.map((tabInfo) => ({
+          ...tabInfo,
+          endpoint,
+          headers: { Authorization: 'basic-auth header' },
+        }));
+```
+
+### Options and Defaults
 | Option            | Default Value | Description                                                                                                                |
 |-------------------|---------------|----------------------------------------------------------------------------------------------------------------------------|
 | responsesFilename |               | Filename to look for alongside GQL files to populate playground's Responses panel                                          |
@@ -61,3 +71,20 @@ If passed a ```responsesFilename``` option, APM will look for a responses file w
 | docSortOrder      | desc          | Asc, or Desc. How are documents ordered during sorting                                                                     |
 | varWarningReport  | required      | All, Required, or None. When should APM warn that it was unable to find a query variable for a given query                 |
 | varWarningDetail  | high          | High, or Low. What level of detail should APM provide when warning of missing query variables                              |
+
+### Example codegen.yml
+```
+overwrite: true
+schema: "src/gql/schema.gql"
+generates:
+  generated/playgroundTabs.json:
+    documents: "./src/components/other_dir/**/*.gql"
+    plugins:
+      - "apollo-playground-maker"
+    config:
+      varFileName: "./src/gql/queryVars.ts"
+      docSortType: "content"
+      missingVarWarning:
+        report: 'all'
+        detail: 'high'
+```
