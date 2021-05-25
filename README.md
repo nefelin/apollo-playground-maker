@@ -1,9 +1,9 @@
 ## What Is It?
-apollo-playground-maker (APM) is a plugin for graphql-codegen[link]. ```apollo-server``` allows you to pass an array of tab configurations as part of the playground setup. [site]
+apollo-playground-maker (APM) is a plugin for [graphql-codegen](https://www.graphql-code-generator.com/). ```apollo-server``` allows you to pass an array of tab configurations as part of the playground setup.
 
 This allows one to supply pre-populated tab-content for the playground. This could be used in a number of ways, but I have found myself
 using it as a sort of swagger-like tool to test the graphQL operations the I have implemented inside my app. Note this only makes sense
-if your graphQL API and your front-end app are tightly coupled, as in the backend for frontend[cite] pattern.
+if your graphQL API and your front-end app are tightly coupled, as in the [backend for frontend](https://samnewman.io/patterns/architectural/bff/) pattern.
 
 ## How It Works
 apollo-playground-maker with it's default settings, will aggregate graphQL operations and attempt to group them in sensible tabs.
