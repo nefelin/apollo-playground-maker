@@ -7,7 +7,8 @@
     "clean": "rimraf generated",
     "test-main": "graphql-codegen --config codegen-main.yml",
     "test-legacy": "graphql-codegen --config codegen-legacy.yml",
-    "test-single-file": "graphql-codegen --config codegen-single-file.yml"
+    "test-single-file": "graphql-codegen --config codegen-single-file.yml",
+    "test:all": "npm run clean && npm run test-main && npm run test-legacy && npm run test-single-file"
   },
   "keywords": [
     "apollo",

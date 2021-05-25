@@ -1,13 +1,12 @@
 require('ts-node').register();
 const { contentSort, documentSort, SortTypes } = require('./sort');
-const { formatTabArray, arrayFromTabs } = require('./format');
+const { addEndpointAndHeaders, formatTabArray, arrayFromTabs } = require('./format');
 const { parseResponses, parseQueries, parseQueryVars } = require('./parse');
 const { validateConfig, configDefaults } = require('./config');
 
 const path = require('path');
 
-module.exports = {
-  plugin: (schema, documents, config, info) => {
+const plugin = (schema, documents, config, info) => {
     const configWithDefaults = {...configDefaults, ...config};
 
     validateConfig(configWithDefaults);
@@ -53,7 +52,6 @@ module.exports = {
     const tabArray = [...insertBlankTab ? [insertTab()] : [], ...arrayFromTabs(tabs)];
 
     return formatTabArray(tabArray);
-  },
 };
 
 const tabsFromLocations = (dirNames, insertBlankTab) => {
@@ -83,4 +81,10 @@ const flattenLocations = (locations) => {
 const getDirName = (fullPath) => {
   const dirs = path.dirname(fullPath).split(path.sep);
   return dirs[dirs.length-1];
-}
+};
+
+module.exports = {
+    plugin,
+    addEndpointAndHeaders
+};
+
