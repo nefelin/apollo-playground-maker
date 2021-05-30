@@ -35,13 +35,13 @@ In addition to aggregating graphQL operations, APM can aggregate query responses
 #### Query Variables
 APM can attempt to hydrate query variables in two different ways. When APM encounters a named variable inside an operation, i.e. ```query Animal($species: String)```,
 it will look for a ```species``` variable and add that to the query variables for the tab where the query will appear. APM will attempt to hydrate query variables only when passed the
-```varFileName``` option.
+```varFilename``` option.
 
 ##### Shared Global Var File
-If the ```varFileName``` contains directory information i.e. ```src/queryVars.ts```, APM will attempt to hydrate all queries from that single file.
+If the ```varFilename``` contains directory information i.e. ```src/queryVars.ts```, APM will attempt to hydrate all queries from that single file.
 
 ##### Per-Directory Var File
-If the ```varFileName``` contains NO directory information i.e. ```queryVars.ts```, APM will look for a ```queryVars.ts``` file in the same directory as the operation utilizing
+If the ```varFilename``` contains NO directory information i.e. ```queryVars.ts```, APM will look for a ```queryVars.ts``` file in the same directory as the operation utilizing
 the argument.
 
 #### Response Text
@@ -83,7 +83,7 @@ generates:
     plugins:
       - "apollo-playground-maker"
     config:
-      varFileName: "./src/gql/queryVars.ts"
+      varFilename: "./src/gql/queryVars.ts"
       docSortType: "content"
       missingVarWarning:
         report: 'all'

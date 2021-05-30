@@ -6,8 +6,7 @@ generates:
     plugins:
       ./src/main.js
     config:
-      varFileName: "queryVars.ts"
+      varFilename: "queryVars.ts"
       docSortType: "content"
-      missingVarWarning:
-        report: 'all'
-        detail: 'high'
+      varWarningDetail: 'high'
+      varWarningReport: 'all'

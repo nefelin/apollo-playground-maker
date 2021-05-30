@@ -16,14 +16,12 @@ const colors = require('colors');
  */
 const arraySuffix = 'Array';
 
-const parseQueryVars = (documents, tabs, varFilename, missingVarWarningConfig, color) => {
+const parseQueryVars = (documents, tabs, varFilename, varWarningReport, varWarningDetail, color) => {
     if (!color) {
         colors.disable()
     }
 
     const fixedPath = fixPath(varFilename);
-
-    const { report, detail } = missingVarWarningConfig;
 
     documents.forEach((doc) => {
         const varDefs = doc.document.definitions
@@ -68,13 +66,13 @@ const parseQueryVars = (documents, tabs, varFilename, missingVarWarningConfig, c
             const varData = maybeFlatExport || maybeDefaultExport;
 
             if (varData === undefined || varData === null) {
-                switch (report.toUpperCase()) {
+                switch (varWarningReport.toUpperCase()) {
                     case MissingVarWarningLevels.ALL:
-                        warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, detail);
+                        warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, varWarningDetail);
                         break;
                     case MissingVarWarningLevels.REQUIRED:
                         if (!isNullable) {
-                            warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, detail);
+                            warnOfMissingVar(doc, lookFor, varType, listCount, varName, varFilePath, varWarningDetail);
                         }
                         break;
                     default:
@@ -87,7 +85,7 @@ const parseQueryVars = (documents, tabs, varFilename, missingVarWarningConfig, c
     });
 };
 
-const warnOfMissingVar = (doc, lookFor, varType, listCount, varName, fixedPath, detail) => {
+const warnOfMissingVar = (doc, lookFor, varType, listCount, varName, fixedPath, varWarningDetail) => {
     const gqlVarName ='$' + varName;
 
     const header = colors.red('Warning: ') + colors.cyan('Missing Query Variable');
@@ -100,7 +98,7 @@ const warnOfMissingVar = (doc, lookFor, varType, listCount, varName, fixedPath, 
     const simpleWarning = [header, parseError, location].join('\n');
     const detailedWarning = [simpleWarning, varFile, sdl].join('\n');
 
-    if (detail.toUpperCase() === MissingVarWarningsDetail.HIGH) {
+    if (varWarningDetail.toUpperCase() === MissingVarWarningsDetail.HIGH) {
         console.error(detailedWarning)
     } else {
         console.error(simpleWarning)

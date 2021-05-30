@@ -17,10 +17,10 @@ const plugin = (schema, documents, config, info) => {
       docSortType,
       docSortOrder,
       varFilename,
-      missingVarWarning,
+      varWarningDetail,
+      varWarningReport,
       insertBlankTab,
       fragmentsLast,
-      varFileType,
     } = configWithDefaults;
 
 
@@ -38,7 +38,7 @@ const plugin = (schema, documents, config, info) => {
     parseQueries(tabs, docsWithDirName, dirNames);
 
     if (varFilename) {
-      parseQueryVars(docsWithDirName, tabs, varFilename, missingVarWarning, color);
+      parseQueryVars(docsWithDirName, tabs, varFilename, varWarningReport, varWarningDetail, color);
     }
 
     if (responsesFilename) {

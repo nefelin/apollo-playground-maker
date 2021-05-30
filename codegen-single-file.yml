@@ -6,10 +6,9 @@ generates:
     plugins:
       ./src/main.js
     config:
-      varFileName: "./test-single-file/queryVars.ts"
+      varFilename: "./test-single-file/queryVars.ts"
       docSortType: "content"
-      missingVarWarning:
-        report: 'all'
-        detail: 'high'
+      varWarningDetail: 'high'
+      varWarningReport: 'all'
       responsesFilename: "gqlResponse.txt"
 

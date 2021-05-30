@@ -5,10 +5,9 @@ generates:
     documents: "test-main/components/other_dir/**/*.gql"
     plugins:
       ./src/main.js
-#    config:
-#      varFileName: "./test-main/queryVars.ts"
-#      docSortType: "content"
-#      missingVarWarning:
-#        report: 'all'
-#        detail: 'high'
-#      responsesFilename: "gqlResponse.txt"
+    config:
+      varFilename: "./test-main/queryVars.ts"
+      docSortType: "content"
+      varWarningDetail: 'high'
+      varWarningReport: 'all'
+      responsesFilename: "gqlResponse.txt"
