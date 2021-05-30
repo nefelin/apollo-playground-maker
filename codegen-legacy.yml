@@ -6,6 +6,7 @@ generates:
     plugins:
       ./src/main.js
     config:
+      tabNamePrefix: "Server-"
       varFilename: "queryVars.ts"
       docSortType: "content"
       varWarningDetail: 'high'

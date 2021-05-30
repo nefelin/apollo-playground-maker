@@ -72,6 +72,8 @@ const tabs = apolloPlaygroundTabs.map((tabInfo) => ({
 | docSortOrder      | desc          | Asc, or Desc. How are documents ordered during sorting                                                                     |
 | varWarningReport  | required      | All, Required, or None. When should APM warn that it was unable to find a query variable for a given query                 |
 | varWarningDetail  | high          | High, or Low. What level of detail should APM provide when warning of missing query variables                              |
+| tabNamePrefix     |               | Naming prefix for the tabs, useful to differentiate queries that live in the front vs backend                              |
+| tabNameSuffix     |               | Naming prefix for the tabs, useful to differentiate queries that live in the front vs backend                              |
 
 ### Example codegen.yml
 ```
@@ -85,7 +87,7 @@ generates:
     config:
       varFilename: "./src/gql/queryVars.ts"
       docSortType: "content"
-      missingVarWarning:
-        report: 'all'
-        detail: 'high'
+      varWarningReport: 'all'
+      varWarningDetail: 'high'
+      tabNamePrefix: 'server'
 ```

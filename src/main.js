@@ -21,6 +21,8 @@ const plugin = (schema, documents, config, info) => {
       varWarningReport,
       insertBlankTab,
       fragmentsLast,
+      tabNamePrefix,
+      tabNameSuffix
     } = configWithDefaults;
 
 
@@ -30,10 +32,10 @@ const plugin = (schema, documents, config, info) => {
     }
 
     const locations = documents.map(({ location }) => location);
-    const dirNames = flattenLocations(locations);
+    const dirNames = flattenLocations(locations, tabNamePrefix, tabNameSuffix);
     const docsWithDirName = documents.map((el, i) => ({ ...el, docDir: dirNames[i] }));
 
-    const tabs = tabsFromLocations(dirNames, insertBlankTab);
+    const tabs = tabsFromLocations(dirNames);
 
     parseQueries(tabs, docsWithDirName, dirNames);
 
@@ -54,9 +56,9 @@ const plugin = (schema, documents, config, info) => {
     return formatTabArray(tabArray);
 };
 
-const tabsFromLocations = (dirNames, insertBlankTab) => {
+const tabsFromLocations = (dirNames) => {
   const tabs = {};
-  dirNames.forEach((loc) => (tabs[loc] = blankTab()));
+  dirNames.filter(onlyUnique).forEach((loc) => (tabs[loc] = blankTab()));
   return tabs;
 };
 
@@ -64,7 +66,7 @@ const DefaultEndpoint = 'http://localhost:4000/graphql';
 const insertTab = () => ({ name: 'New Tab', query: '', variables: '', responses: [], endpoint: DefaultEndpoint });
 const blankTab = () => ({ query: '', variables: {}, responses: '', endpoint: DefaultEndpoint });
 
-const flattenLocations = (locations) => {
+const flattenLocations = (locations, tabNamePrefix, tabNameSuffix) => {
   if (locations.length === 1) {
     return [getDirName(locations[0])]
   }
@@ -76,8 +78,13 @@ const flattenLocations = (locations) => {
     offset++;
   }
 
-  return splits.map((split) => split[offset]);
+  const dirs = splits.map((split) => split[offset]);
+  return dirs.map(dirName => tabNamePrefix + dirName + tabNameSuffix);
 };
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
 const getDirName = (fullPath) => {
   const dirs = path.dirname(fullPath).split(path.sep);

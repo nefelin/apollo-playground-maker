@@ -42,6 +42,8 @@ const configDefaults = {
   insertBlankTab: true,
   fragmentsLast: true,
   color: true,
+  tabNamePrefix: "",
+  tabNameSuffix: "",
 };
 
 module.exports = {
