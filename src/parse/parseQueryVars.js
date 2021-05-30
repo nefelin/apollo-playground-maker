@@ -1,6 +1,7 @@
 const path = require('path');
 const { MissingVarWarningLevels, MissingVarWarningsDetail } = require('./types');
 const colors = require('colors');
+const fs = require('fs');
 /*
  arraySuffix: The suffix to append to types when looking to hydrate queryVars
  e.g when parsing the following query:
@@ -55,11 +56,10 @@ const parseQueryVars = (documents, tabs, varFilename, varWarningReport, varWarni
 
         const flatDefs = varDefs?.reduce((acc, curr) => [...curr, ...acc], []);
         flatDefs?.forEach(({ varName, varType, listCount, isNullable }) => {
-            // const lookFor = isBasicType(varType) ? varName : varNameFromType(varType, listCount);
             const lookFor = varName;
 
             const varFilePath = filenameHasPath(varFilename) ? fixedPath : path.join(path.dirname(doc.location), varFilename); // full path means use single file, filename only means look for this pattern at each doc.
-            const varFileData = require(varFilePath);
+            const varFileData = fs.existsSync(varFilePath) ? require(varFilePath) : {};
 
             const maybeFlatExport = varFileData[lookFor];
             const maybeDefaultExport = varFileData.default?.[lookFor];
@@ -91,7 +91,7 @@ const warnOfMissingVar = (doc, lookFor, varType, listCount, varName, fixedPath, 
     const header = colors.red('Warning: ') + colors.cyan('Missing Query Variable');
     const location = colors.grey(`at ${doc.location}`);
     const parseError = `Couldn't find export '${colors.bold(lookFor)}' of type '${colors.bold(arrayifyVarType(varType, listCount))}' to hydrate '${colors.bold(gqlVarName)}'`;
-    const varFile = colors.grey(`queryVarsFile set to: ${fixedPath}`);
+    const varFile = colors.grey(`queryVarsFile: ${fixedPath}`);
 
     const sdl = colors.green(doc.rawSDL.replace(gqlVarName, colors.red(gqlVarName)));
 
