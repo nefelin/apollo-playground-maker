@@ -8,6 +8,7 @@ const arrayFromTabs = (tabs) => {
       query: value.query.trim(),
       variables: JSON.stringify(value.variables, null, ' '),
       responses: [value.responses],
+      endpoint: value.endpoint
     });
   }
   return ar;
