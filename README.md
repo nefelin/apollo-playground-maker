@@ -1,4 +1,6 @@
 ## What Is It?
+**note:** requires node >= v14
+
 apollo-playground-maker (APM) is a plugin for [graphql-codegen](https://www.graphql-code-generator.com/) that generates comprehensive tab content
 for ```apollo-server``` graphQL playgrounds.
 
